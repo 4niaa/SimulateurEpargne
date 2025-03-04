@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulateur d'Épargne</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="login-container">
+          <button id="loginBtn" class="btn btn-outline btn-sm">
+            Se connecter
+          </button>
+          <div class="user-info">
+            <div class="avatar" id="userAvatar">U</div>
+            <span id="userName">Utilisateur</span>
+            <button id="logoutBtn" class="btn btn-outline btn-sm">
+              Déconnexion
+            </button>
+          </div>
+        </div>
+        <h1>Mon Simulateur d'Épargne</h1>
+        <p>Version encore à améliorer désolée <3</p>
+      </header>
+
+      <section id="simulateur">
+        <h2>Créer une simulation d'épargne</h2>
+        <form id="epargne-form">
+          <div class="form-group">
+            <label for="objectif">Quel est votre objectif d'épargne ?</label>
+            <input
+              type="text"
+              id="objectif"
+              class="form-control"
+              placeholder="Ex: Voyage, voiture, apport immobilier..."
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="montant">Montant souhaité (€)</label>
+            <input
+              type="number"
+              id="montant"
+              class="form-control"
+              min="1"
+              placeholder="Montant total"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="date">Date limite pour atteindre cet objectif</label>
+            <input type="date" id="date" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="versementInitial">Versement initial (€)</label>
+            <input
+              type="number"
+              id="versementInitial"
+              class="form-control"
+              min="0"
+              value="0"
+              placeholder="Montant du premier versement"
+            />
+          </div>
+
+          <button type="submit" class="btn">Calculer mon plan d'épargne</button>
+        </form>
+
+        <div id="resultat" style="display: none"></div>
+
+        <div
+          id="graphContainer"
+          class="chart-container"
+          style="display: none"
+        ></div>
+
+        <div class="plan-comparison" id="planComparison" style="display: none">
+          <!-- Les plans de comparaison seront ajoutés dynamiquement ici -->
+        </div>
+
+        <button
+          id="saveSimulationBtn"
+          class="btn btn-outline"
+          style="margin-top: 20px; display: none"
+        >
+          Sauvegarder cette simulation
+        </button>
+      </section>
+
+      <section id="manifestation">
+        <h2>Visualisez votre objectif</h2>
+        <p>
+          Téléchargez une image représentant votre objectif pour renforcer votre
+          motivation.
+        </p>
+
+        <div class="manifesting-content">
+          <div class="image-upload">
+            <label for="imageInput"></label>
+            <input type="file" id="imageInput" accept="image/*" />
+            <img
+              id="preview"
+              src=""
+              alt="Aperçu de l'image"
+              style="display: none"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="mantra">Votre mantra d'épargne</label>
+            <textarea
+              id="mantra"
+              class="form-control"
+              rows="3"
+              placeholder="Ex: Chaque euro économisé me rapproche de mon objectif..."
+            ></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section id="historySection" style="display: none">
+        <h2>Mes simulations sauvegardées</h2>
+        <div id="savedSimulations">
+          <p>
+            Vous n'avez pas encore de simulations sauvegardées. Connectez-vous
+            pour utiliser cette fonctionnalité.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Modal de connexion -->
+    <div class="modal" id="loginModal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="tabs">
+          <div class="tab active" data-tab="login">Connexion</div>
+          <div class="tab" data-tab="register">Inscription</div>
+        </div>
+
+        <div class="tab-content active" id="loginTab">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="loginEmail">Email</label>
+              <input
+                type="email"
+                id="loginEmail"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Mot de passe</label>
+              <input
+                type="password"
+                id="loginPassword"
+                class="form-control"
+                required
+              />
+            </div>
+            <button type="submit" class="btn" style="width: 100%">
+              Se connecter
+            </button>
+          </form>
+        </div>
+
+        <div class="tab-content" id="registerTab">
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="registerName">Nom</label>
+              <input
+                type="text"
+                id="registerName"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="registerEmail">Email</label>
+              <input
+                type="email"
+                id="registerEmail"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="registerPassword">Mot de passe</label>
+              <input
+                type="password"
+                id="registerPassword"
+                class="form-control"
+                required
+              />
+            </div>
+            <button type="submit" class="btn" style="width: 100%">
+              S'inscrire
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
